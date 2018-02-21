@@ -21,7 +21,4 @@ class Activity
     end
     owded_per_person
   end
-
-
-
 end
