@@ -13,7 +13,7 @@ class Activity
     @participants[name] = paid_amount
   end
 
-  def calulate_owed
+  def calculate_owed
     cost_per_person = @cost / @participants.length
     owded_per_person = {}
     @participants.each do |participant, paid|

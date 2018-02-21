@@ -22,7 +22,7 @@ class ActivityTest < Minitest::Test
   end
 
   def test_calculate_owed
-    owed = @hiking.calulate_owed
+    owed = @hiking.calculate_owed
     assert_equal 10, owed['joe']
     assert_equal 0, owed['mary']
     assert_equal (-10), owed['todd']
