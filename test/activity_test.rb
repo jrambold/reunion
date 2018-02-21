@@ -5,18 +5,26 @@ require './lib/activity'
 
 class ActivityTest < Minitest::Test
   def setup
-    @hiking = Activity.new('hiking')
+    @hiking = Activity.new('hiking', 45)
+    @hiking.add_participant('joe', 5)
+    @hiking.add_participant('mary', 15)
+    @hiking.add_participant('todd', 25)
   end
 
-  def test_create_activity_with_name
+  def test_create_activity
     assert_equal 'hiking', @hiking.name
+    assert_equal 45, @hiking.cost
   end
 
   def test_add_participant
-    @hiking.add_participant('joe', 20)
-    @hiking.add_participant('mary', 30)
+    assert_equal 5, @hiking.participants['joe']
+    assert_equal 15, @hiking.participants['mary']
+  end
 
-    assert_equal 20, @hiking.participants['joe']
-    assert_equal 30, @hiking.participants['mary']
+  def test_calculate_owed
+    owed = @hiking.calulate_owed
+    assert_equal 10, owed['joe']
+    assert_equal 0, owed['mary']
+    assert_equal (-10), owed['todd']
   end
 end
